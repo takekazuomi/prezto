@@ -5,7 +5,15 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+#zmodload zsh/zprof && zprof
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+path=(
+	$path
+#	/mnt/c/windows/system32(N-/)
+	'/mnt/c/Program Files/Docker/Docker/resources/bin/'(N-/)
+)
