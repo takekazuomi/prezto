@@ -33,3 +33,6 @@
 	path = modules/prompt/external/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 	shallow = true
+[submodule "external/cd-bookmark"]
+	path = external/cd-bookmark
+	url = git@github.com:mollifier/cd-bookmark.git

@@ -20,21 +20,22 @@ done
 
 eval "$(direnv hook zsh)"
 
-zstyle ':prezto:load' pmodule-dirs $HOME/.zsh-contrib
 
 if (which zprof > /dev/null 2>&1) ;then
    zprof | less
 fi
 
-fpath=(~/.zsh-contrib/cd-bookmark(N-/) $fpath)
-autoload -Uz cd-bookmark
+if [[ -d "${ZDOTDIR:-$HOME}/.zprezto/external" ]]; then
+   zstyle ':prezto:load' pmodule-dirs "${ZDOTDIR:-$HOME}/.zprezto/external"
 
-autoload -U +X bashcompinit && bashcompinit
-source ~/.zsh-contrib/az.completion
+   autoload -Uz cd-bookmark
+   alias cdb='cd-bookmark'
+
+   autoload -U +X bashcompinit && bashcompinit
+   source /etc/bash_completion.d/azure-cli   
+fi
 
 alias open=wslview
-alias cdb='cd-bookmark'
-
 
 #
 
