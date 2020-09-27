@@ -15,6 +15,8 @@ fi
 export GOPATH=$HOME/go
 
 path=(
+	$HOME/.local/bin(N-/)
+	$HOME/.dotnet/tools(N-/)
 	$path
 	$HOME/.cargo/bin(N-/)
 #	/mnt/c/windows/system32(N-/)
