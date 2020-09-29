@@ -32,8 +32,11 @@ if [[ -d "${ZDOTDIR:-$HOME}/.zprezto/external" ]]; then
    alias cdb='cd-bookmark'
 
    autoload -U +X bashcompinit && bashcompinit
-   source /etc/bash_completion.d/azure-cli   
+   source /etc/bash_completion.d/azure-cli
+
 fi
+
+source ${HOME}/.zprezto/external/git-flow-completion/git-flow-completion.zsh
 
 alias open=wslview
 

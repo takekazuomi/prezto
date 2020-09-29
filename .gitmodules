@@ -36,3 +36,9 @@
 [submodule "external/cd-bookmark"]
 	path = external/cd-bookmark
 	url = git@github.com:mollifier/cd-bookmark.git
+[submodule "git-flow-completion"]
+	path = git-flow-completion
+	url = git@github.com:bobthecow/git-flow-completion.git
+[submodule "external/git-flow-completion"]
+	path = external/git-flow-completion
+	url = git@github.com:bobthecow/git-flow-completion.git
