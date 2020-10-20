@@ -45,3 +45,5 @@ alias open=wslview
 function cdw {
     cd `wslpath "$1"`
 }
+
+alias code='/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
