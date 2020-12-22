@@ -66,3 +66,23 @@ fi
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# for X
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export DefaultIMModule=fcitx
+
+# if X11 server available, start fcixt.
+if test "$SHLVL" -eq 1 && nc -v "$(echo "$DISPLAY" | cut -d : -f 1)" 6000 -w 1 > /dev/null 2>&1; then
+   fcitx-remote > /dev/null 2>&1
+   if [ $? = "1" ]; then
+       fcitx-autostart > /dev/null 2>&1
+   fi
+else
+    echo "X11 server not stated"
+:
+fi
