@@ -11,3 +11,121 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+for c in wslfetch wslpath wslsys wslupath wslusc wslvar wslview
+do
+	alias $c="PATH=\"$PATH:/mnt/c/windows/system32\" $c"
+done
+
+
+eval "$(direnv hook zsh)"
+
+
+if (which zprof > /dev/null 2>&1) ;then
+   zprof | less
+fi
+
+if [[ -d "${ZDOTDIR:-$HOME}/.zprezto/external" ]]; then
+   zstyle ':prezto:load' pmodule-dirs "${ZDOTDIR:-$HOME}/.zprezto/external"
+
+   autoload -Uz cd-bookmark
+   alias cdb='cd-bookmark'
+
+   autoload -U +X bashcompinit && bashcompinit
+   source /etc/bash_completion.d/azure-cli
+
+fi
+
+if [[ -s "${HOME}/.zprezto/external/git-flow-completion/git-flow-completion.zsh" ]]; then
+   source ${HOME}/.zprezto/external/git-flow-completion/git-flow-completion.zsh
+fi
+
+#alias open=wslview
+function open {
+  local p
+  if [[ -n "$1" ]]; then
+   if [[ "$1" =~ ^http.* ]]; then
+    p = "$1"
+   else
+		p=$(wslpath -w "$1")
+   fi
+	else
+		p='.'
+	fi
+	wslview "$p"
+}
+
+#
+
+function cdw {
+    cd `wslpath "$1"`
+}
+
+alias code='/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+alias clip='/mnt/c/Windows/System32/clip.exe'
+alias gcd='cd $(ghq list -p | peco --layout=bottom-up)'
+alias wcd='cd $(git worktree list | peco --layout=bottom-up --query "$LBUFFER" | cut -d " " -f 1)'
+
+export PS1="\$ "
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet
+
+# for Windows Terminal
+
+keep_current_path() {
+  if [[ -n "$WSL_ENV" ]]; then
+    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+  fi
+}
+precmd_functions+=(keep_current_path)
+
+title() {
+  local t=${1:-"$(hostname) $(basename ${PWD})"}
+  echo -ne '\033]0;'"$t"'\a'
+}
+
+sc() {
+  local p
+  if [[ -n "$1" ]]; then
+   code --folder-uri vscode-remote://ssh-remote+m900.lowe.e-omi.org/"$1"
+  fi
+}
+
+sf() {
+  local p
+  if [[ -n "$1" ]]; then
+   code --file-uri vscode-remote://ssh-remote+m900.lowe.e-omi.org/"$1"
+  fi
+}
+
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+autoload -Uz promptinit
+promptinit
+prompt redhat
+
+ghc() {
+  local l=`ghq create "$1"`
+  cd $l
+}
+
+
