@@ -9,3 +9,22 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export GOPATH=$HOME/go
+
+path=(
+	$HOME/.local/bin(N-/)
+	$HOME/.dotnet/tools(N-/)
+	$path
+	$HOME/.cargo/bin(N-/)
+#	/mnt/c/windows/system32(N-/)
+	'/mnt/c/Program Files/Docker/Docker/resources/bin/'(N-/)
+	/usr/local/go/bin(N-/)
+	$HOME/go/bin(N-/)
+	$HOME/.dapr/bin(N-/)
+)
+
+[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
+
