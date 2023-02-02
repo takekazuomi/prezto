@@ -119,9 +119,9 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-autoload -Uz promptinit
-promptinit
-prompt redhat
+#autoload -Uz promptinit
+#promptinit
+#prompt redhat
 
 ghc() {
   local l=`ghq create "$1"`
