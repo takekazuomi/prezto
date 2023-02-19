@@ -132,7 +132,7 @@ bindkey '^R' peco-history-selection
 
 #autoload -Uz promptinit
 #promptinit
-#prompt redhat
+prompt redhat
 
 ghc() {
   local l=`ghq create "$1"`
