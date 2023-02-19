@@ -27,4 +27,3 @@ path=(
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
-
