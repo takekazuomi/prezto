@@ -61,7 +61,7 @@ function cdw {
     cd `wslpath "$1"`
 }
 
-if [[ -s '/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code' ]]; then
+if [[ -s '/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft VS Code/bin/code' ]]; then
    alias code='/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 fi
 
