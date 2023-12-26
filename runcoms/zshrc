@@ -12,10 +12,10 @@ fi
 
 # Customize to your needs...
 
-for c in wslfetch wslpath wslsys wslupath wslusc wslvar wslview
-do
-	alias $c="PATH=\"$PATH:/mnt/c/windows/system32\" $c"
-done
+#for c in wslfetch wslpath wslsys wslupath wslusc wslvar wslview
+#do
+#	alias $c="PATH=\"$PATH:/mnt/c/windows/system32\" $c"
+#done
 
 
 eval "$(direnv hook zsh)"
@@ -63,6 +63,11 @@ function cdw {
 
 if [[ -s '/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft VS Code/bin/code' ]]; then
    alias code='/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+fi
+
+
+if [[ -s '/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft VS Code Insiders/bin/code-insiders' ]]; then
+   alias code='/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft\ VS\ Code\ Insiders/bin/code-insiders'
 fi
 
 alias clip='/mnt/c/Windows/System32/clip.exe'
