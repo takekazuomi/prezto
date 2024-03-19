@@ -52,6 +52,8 @@ path=(
   $HOME/{,s}bin(N)
   /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
+  $HOME/.local/share/flutter/bin(N)
+  $HOME/.local/share/android/cmdline-tools/bin(N)
   $path
 )
 

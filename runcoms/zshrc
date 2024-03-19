@@ -138,6 +138,10 @@ bindkey '^R' peco-history-selection
 #autoload -Uz promptinit
 #promptinit
 prompt redhat
+# prompt module eats unterminated lines
+# https://github.com/sorin-ionescu/prezto/issues/1643#issuecomment-444638199
+setopt prompt_cr && setopt prompt_sp
+
 
 ghc() {
   local l=`ghq create "$1"`
@@ -352,3 +356,4 @@ if [ "$funcstack[1]" = "_buf" ]; then
 fi
 
 alias date='date --rfc-3339=seconds'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
