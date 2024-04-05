@@ -47,13 +47,21 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
+#
+# Java
+#
+
+#export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
 # Set the list of directories that Zsh searches for programs.
 path=(
   $HOME/{,s}bin(N)
   /opt/{homebrew,local}/{,s}bin(N)
   /usr/local/{,s}bin(N)
   $HOME/.local/share/flutter/bin(N)
+  $HOME/.pub-cache/bin(N)
   $HOME/.local/share/android/cmdline-tools/bin(N)
+#  $JAVA_HOME/bin(N)
   $path
 )
 
