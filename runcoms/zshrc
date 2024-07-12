@@ -71,8 +71,6 @@ if [[ -s '/mnt/c/Users/takekazu/AppData/Local/Programs/Microsoft VS Code Insider
 fi
 
 alias clip='/mnt/c/Windows/System32/clip.exe'
-alias gcd='cd $(ghq list -p | peco --layout=bottom-up)'
-alias wcd='cd $(git worktree list | peco --layout=bottom-up --query "$LBUFFER" | cut -d " " -f 1)'
 
 export PS1="\$ "
 
@@ -141,12 +139,6 @@ prompt redhat
 # prompt module eats unterminated lines
 # https://github.com/sorin-ionescu/prezto/issues/1643#issuecomment-444638199
 setopt prompt_cr && setopt prompt_sp
-
-
-ghc() {
-  local l=`ghq create "$1"`
-  cd $l
-}
 
 
 #compdef buf
@@ -373,3 +365,23 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+## git 
+
+alias gcd='cd $(ghq list -p | peco --layout=bottom-up)'
+alias wcd='cd $(git worktree list | peco --layout=bottom-up --query "$LBUFFER" | cut -d " " -f 1)'
+
+function ghc() {
+  local l=`ghq create "$1"`
+  cd $l
+}
+
+function gwa() {
+  if [[ -n "$1" ]]; then
+    local b=$1
+    [[ $(git ls-remote --exit-code --heads origin refs/heads/$b) ]] || local opt=-b
+    git worktree add  ${GIT_WORKTREE_HOME}/${$(git rev-parse --show-toplevel)##$(ghq root)/}/$b $opt $b
+  fi
+}
+

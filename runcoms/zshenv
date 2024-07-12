@@ -21,6 +21,7 @@ path=(
 #	'/mnt/c/Program Files/Docker/Docker/resources/bin/'(N-/)
 	/usr/local/go/bin(N-/)
 	$HOME/go/bin(N-/)
+	$HOME/dapr(N-/)
 	$HOME/.dapr/bin(N-/)
 )
 
