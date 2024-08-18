@@ -27,6 +27,8 @@ path=(
 
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
-export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
-export GIT_WORKTREE_HOME="$(ghq root)/../wt"
+#export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
+export GIT_WORKTREE_HOME=$(realpath $(ghq root)/../wt)
+
+
 

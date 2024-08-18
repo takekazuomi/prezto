@@ -47,7 +47,7 @@ function open {
    if [[ "$1" =~ ^http.* ]]; then
     p = "$1"
    else
-		p=$(wslpath -w "$1")
+		p="$(wslpath -w "$1")"
    fi
 	else
 		p='.'
