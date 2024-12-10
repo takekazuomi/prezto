@@ -104,9 +104,11 @@ title() {
 
   r=$(git remote get-url origin) &>! /dev/null
   if [ $? -eq 0 ]; then
-     t="$t $(basename $r) $(git branch --show)"
+#     t="$t $(basename $r) $(git branch --show)"
+     t="$t $(git branch --show)"
   else
-     t="$t $(basename ${PWD})"
+#     t="$t $(basename ${PWD})"
+     t="$t ${PWD})"
   fi
   echo -ne '\033]0;'"$t"'\a'
 }
