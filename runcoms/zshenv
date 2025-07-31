@@ -27,8 +27,10 @@ path=(
 
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
-#export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
+##export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
 export GIT_WORKTREE_HOME=$(realpath $(ghq root)/../wt)
 
 
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
