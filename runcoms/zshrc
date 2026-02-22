@@ -410,3 +410,17 @@ export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
 # Chrome (Windows)
 export CHROME_EXECUTABLE="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+
+# WSL: Windows Presentation Settings
+() {
+    PM_EXECUTABLE=/mnt/c/WINDOWS/system32/PresentationSettings.exe
+    [[ -x $PM_EXECUTABLE ]] || { unset PM_EXECUTABLE; return }
+    
+    pm() {
+        case $1 in
+            on)  $PM_EXECUTABLE /start ;;
+            off) $PM_EXECUTABLE /stop ;;
+            *)   $PM_EXECUTABLE ;;
+        esac
+    }
+}
