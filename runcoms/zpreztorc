@@ -41,7 +41,8 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'prompt' \
   'gpg' \
-  'ssh'
+  'ssh' \
+  'completion'
 
 #
 # Autosuggestions

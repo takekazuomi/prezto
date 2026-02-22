@@ -10,7 +10,7 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export GOPATH=$HOME/go
+#export GOPATH=$HOME/go
 
 path=(
 	$HOME/.local/bin(N-/)
@@ -19,18 +19,21 @@ path=(
 	$HOME/.cargo/bin(N-/)
 #	/mnt/c/windows/system32(N-/)
 #	'/mnt/c/Program Files/Docker/Docker/resources/bin/'(N-/)
-	/usr/local/go/bin(N-/)
+#	/usr/local/go/bin(N-/)
 	$HOME/go/bin(N-/)
-	$HOME/dapr(N-/)
-	$HOME/.dapr/bin(N-/)
+#	$HOME/dapr(N-/)
+#	$HOME/.dapr/bin(N-/)
 )
 
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 ##export ORANGE_MKDOCS=takekazuomi/mkdocs-material:latest
 export GIT_WORKTREE_HOME=$(realpath $(ghq root)/../wt)
+export BUF_BETA_SUPPRESS_WARNINGS=1
 
 
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$VOLTA_HOME/bin:$PATH"
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
