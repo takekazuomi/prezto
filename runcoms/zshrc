@@ -425,6 +425,6 @@ export CHROME_EXECUTABLE="/mnt/c/Program Files/Google/Chrome/Application/chrome.
 }
 
 
-# zshrc末尾に追加
 # Docker Desktopが未起動時の_dockerシンボリックリンクエラーを無視
+# https://github.com/docker/for-win/issues/8336#issuecomment-689022902
 compinit -u 2>/dev/null
