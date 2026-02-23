@@ -5,6 +5,9 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+# fpath 追加
+fpath=("${ZDOTDIR:-$HOME}/.zprezto/completions"(-/FN) $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -420,3 +423,8 @@ export CHROME_EXECUTABLE="/mnt/c/Program Files/Google/Chrome/Application/chrome.
         esac
     }
 }
+
+
+# zshrc末尾に追加
+# Docker Desktopが未起動時の_dockerシンボリックリンクエラーを無視
+compinit -u 2>/dev/null
