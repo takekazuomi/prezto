@@ -424,6 +424,8 @@ export CHROME_EXECUTABLE="/mnt/c/Program Files/Google/Chrome/Application/chrome.
     }
 }
 
+# mise を有効にする
+eval "$(mise activate zsh)"
 
 # Docker Desktopが未起動時の_dockerシンボリックリンクエラーを無視
 # https://github.com/docker/for-win/issues/8336#issuecomment-689022902
