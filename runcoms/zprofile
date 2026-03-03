@@ -66,6 +66,7 @@ path=(
   $HOME/.pub-cache/bin(N)
   $HOME/.local/share/android/cmdline-tools/bin(N)
 #  $JAVA_HOME/bin(N)
+  "${ZDOTDIR:-$HOME}/.zprezto/lib"(N)
   $path
 )
 

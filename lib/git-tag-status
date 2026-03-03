@@ -1,0 +1,21 @@
+#!/bin/bash
+# 指定プレフィックスのタグがmainにマージ済みかを一覧表示する
+
+set -euo pipefail
+
+: ${TAG_PREFIX:=$(git tag -l | sed 's|/v[^/]*$|/v|' | sort -u | fzf --prompt="TAG_PREFIX> ")}
+
+# fzf でキャンセルされた場合のガード
+[[ -z "$TAG_PREFIX" ]] && { exit 1; }
+
+git tag -l --sort=-v:refname \
+    --format='%(refname:short)|%(creatordate:short)|%(taggername)|%(contents:subject)' \
+  | awk -v prefix="$TAG_PREFIX" 'substr($0, 1, length(prefix)) == prefix' \
+  | while IFS='|' read -r tag date tagger comment; do
+        if git merge-base --is-ancestor "$tag" main 2>/dev/null; then
+            mark="✓"
+        else
+            mark="✗"
+        fi
+        echo "$mark $date [$tagger] $tag $comment"
+    done

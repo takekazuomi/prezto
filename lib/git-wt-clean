@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+
+main=$(git rev-parse --show-toplevel)
+
+# 変更のないworktreeだけをfzfに渡す
+git worktree list --porcelain \
+  | grep '^worktree ' \
+  | awk '{print $2}' \
+  | grep -v "^${main}$" \
+  | while IFS= read -r path; do
+      [[ -z "$(git -C "$path" status --porcelain 2>/dev/null)" ]] && echo "$path"
+    done \
+  | fzf --multi --prompt="Remove worktrees (TAB to multi-select): " \
+  | xargs -r -I{} git worktree remove {}
+
