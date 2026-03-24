@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "$(git config --get remote.origin.url)/$(git rev-parse --show-prefix)"
+
