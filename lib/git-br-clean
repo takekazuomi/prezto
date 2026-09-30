@@ -1,0 +1,13 @@
+#!/bin/bash
+# git-br-clean — マージ済みブランチ
+
+set -euo pipefail
+
+base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||' || echo main)
+cur=$(git branch --show-current)
+
+# base にマージ済みのブランチだけをfzfに渡す
+git branch --merged "$base" --format='%(refname:short)' \
+  | grep -vxE "${base}|${cur}" \
+  | fzf --multi --prompt="Delete merged branches (TAB to multi-select): " \
+  | xargs -r git branch -d
